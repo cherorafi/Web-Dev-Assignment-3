@@ -11,16 +11,29 @@ function addR() {
     for (var i = 0; i < cellCount; i++) {
         var cell = row.insertCell(i);
         cell.innerHTML = "";
+        addCellClickListener(cell);
+    }
+
+    if (table.rows.length <= 1){
+        addC()
     }
 }
 
 // Add a column
 function addC() {
     var table = document.getElementById("grid");
-    var rowCount = table.rows.length;
-    for (var i = 0; i < rowCount; i++) {
-        var cell = table.rows[i].insertCell(-1);
-        cell.innerHTML = "";
+    if (table.rows.length <= 0){
+        addR()
+        addC()
+        removeC()
+        removeR()
+    } else {
+        var rowCount = table.rows.length;
+        for (var i = 0; i < rowCount; i++) {
+            var cell = table.rows[i].insertCell(-1);
+            cell.innerHTML = "";
+            addCellClickListener(cell);
+        }
     }
 }
 
@@ -72,5 +85,15 @@ function fillAll(){
 
 // Clear all cells
 function clearAll(){
-    alert("Clicked Clear All"); // Replace this line with your code.
+    var table = document.getElementById("grid");
+    var cells = table.getElementsByTagName("td");
+    for (var i = 0; i < cells.length; i++) {
+        cells[i].style.backgroundColor = "";
+    }
 }
+
+function addCellClickListener(cell) {
+    cell.addEventListener("click", function() {
+      cell.style.backgroundColor = colorSelected;
+    });
+  }
