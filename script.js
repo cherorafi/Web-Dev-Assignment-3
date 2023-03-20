@@ -48,17 +48,26 @@ function removeC() {
 // Set global variable for selected color
 function selectColor(){
     colorSelected = document.getElementById("selectedColorId").value;
-    console.log(colorSelected);
 }
 
 // Fill all uncolored cells
 function fillU(){
-    alert("Clicked Fill All Uncolored"); // Replace this line with your code.
+    var table = document.getElementById("grid");
+    var cells = table.getElementsByTagName("td");
+    for (var i = 0; i < cells.length; i++) {
+        if (cells[i].style.backgroundColor === "") {
+          cells[i].style.backgroundColor = colorSelected;
+        }
+      }
 }
 
 // Fill all cells
 function fillAll(){
-    alert("Clicked Fill All"); // Replace this line with your code.
+    var table = document.getElementById("grid");
+    var cells = table.getElementsByTagName("td");
+    for (var i = 0; i < cells.length; i++) {
+        cells[i].style.backgroundColor = colorSelected;
+    }
 }
 
 // Clear all cells
