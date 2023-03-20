@@ -5,22 +5,44 @@ let colorSelected;
 
 // Add a row
 function addR() {
-    alert("Clicked Add Row"); // Replace this line with your code.
+    var table = document.getElementById("grid");
+    var row = table.insertRow(-1);
+    var cellCount = table.rows[0].cells.length;
+    for (var i = 0; i < cellCount; i++) {
+        var cell = row.insertCell(i);
+        cell.innerHTML = "";
+    }
 }
 
 // Add a column
 function addC() {
-    alert("Clicked Add Col"); // Replace this line with your code.
+    var table = document.getElementById("grid");
+    var rowCount = table.rows.length;
+    for (var i = 0; i < rowCount; i++) {
+        var cell = table.rows[i].insertCell(-1);
+        cell.innerHTML = "";
+    }
 }
 
 // Remove a row
 function removeR() {
-    alert("Clicked Remove Row"); // Replace this line with your code.
+    var table = document.getElementById("grid");
+    var rowCount = table.rows.length;
+    if (rowCount > 1) {
+        table.deleteRow(rowCount - 1);
+  }
 }
 
 // Remove a column
 function removeC() {
-    alert("Clicked Remove Col"); // Replace this line with your code.
+    var table = document.getElementById("grid");
+    var rowCount = table.rows.length;
+    var colCount = table.rows[0].cells.length; // assume all rows have the same number of columns
+    if (colCount > 1) { // make sure there's at least one column besides the first
+        for (var i = 0; i < rowCount; i++) {
+        table.rows[i].deleteCell(colCount - 1);
+        }
+    }
 }
 
 // Set global variable for selected color
